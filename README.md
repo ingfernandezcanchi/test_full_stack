@@ -7,3 +7,5 @@ De ser necesario y si me dan mas tiempo puedo desarrollar el API REST con Codeig
 Se pueden agregar muchas funcionalidades más al trabajo realizado, o mejorar lo ya desarrollado.
 
 Todo esta subido en el Branch DEV.
+
+Desde Back.html se gestionan los contenidos y desde Front.html se visualizan los contenidos cargados como se requiere en el test.
