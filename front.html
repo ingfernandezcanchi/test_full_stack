@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Test Full Stack: FrontEnd - Hugo Fernández</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <style>
+            .mdl-card__title{
+                border-bottom: 1px solid #eee;
+            }
+            .mdl-card__supporting-text{
+                min-height: 100px;
+                width: 100%;
+                text-align: justify;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="app">
+            <div class="row d-flex justify-content-between align-items-center">
+                <h2 class="float-left">News</h2>
+                <div class="float-right">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="buscar" v-on:keyup.enter="onEnter">
+                        <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp col-md-12 mb-5" v-for="(contenido,indice) of contenidos">
+                    <div class="mdl-card__title d-flex justify-content-between">
+                        <div class="float-left">
+                            <strong >{{ contenido.cat_nombre }}</strong>
+                        </div>
+                        <div class="float-right">
+                            <strong >{{ contenido.pai_nombre }}</strong>
+                        </div>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        {{ contenido.contenido }}
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="float-left">
+                            <strong>{{ contenido.fecha_alta }}</strong>
+                        </a>
+                        <a class="float-right">
+                            <strong>{{ contenido.referencias }}</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var url = "http://localhost:2022/test_full_stack/";
+        var app = new Vue({
+            el: "#app",
+            data: {
+                contenidos: [],
+                buscar:""
+            },
+            methods:{
+                listarContenido: function(){
+                    axios.post(url,{opcion:4, tabla:"contenidos"}).then(response => {
+                        this.contenidos = response.data;
+                        console.log(response);
+                    });
+                },
+                onEnter: function() {
+                    this.buscar = document.getElementById('buscar').value;
+                    axios.post(url,{opcion:4, tabla:"contenidos", buscar: this.buscar}).then(response => {
+                        this.contenidos = response.data;
+                        console.log(response);
+                    });
+                }
+            },
+            created:function(){
+                this.listarContenido();
+                console.log(this.contenidos);
+            },
+            computed:{
+                
+            }
+        })
+    </script> 
+</html>
+
