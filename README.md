@@ -6,7 +6,7 @@ Por cuestiones de tiempo, se desarrollo el BackendEnd con PHP puro, sin uso de F
 De ser necesario y si me dan mas tiempo puedo desarrollar el API REST con Codeigniter 3 o 4.
 Se pueden agregar muchas funcionalidades más al trabajo realizado, o mejorar lo ya desarrollado.
 
-Todo esta subido en el Branch DEV.
+Se crearon dos Branchs MAIN y DEV.
 
 Desde Back.html se gestionan los contenidos y desde Front.html se visualizan los contenidos cargados como se requiere en el test.
 
